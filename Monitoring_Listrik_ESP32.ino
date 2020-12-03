@@ -34,24 +34,24 @@ void setup() {
 void loop() {  
     float voltage = pzem.voltage();
     if( !isnan(voltage) ) {
-        Serial.print("Voltage: "); Serial.print(voltage); Serial.println("V");
-        Firebase.setString("Listrik/Appliances/tegangan", String(voltage));
+        Serial.print("Voltage: "); Serial.print(voltage); Serial.println(" V");
+        Firebase.setString("Listrik/Appliances/tegangan", String(voltage) + " V");
     } else {
         Serial.println("Error reading voltage");
     }
 
     float current = pzem.current();
     if( !isnan(current) ){
-        Serial.print("Current: "); Serial.print(current); Serial.println("A");
-        Firebase.setString("Listrik/Appliances/arus", String(current));
+        Serial.print("Current: "); Serial.print(current); Serial.println(" A");
+        Firebase.setString("Listrik/Appliances/arus", String(current) + " A");
     } else {
         Serial.println("Error reading current");
     }
 
     float power = pzem.power();
     if( !isnan(power) ){
-        Serial.print("Power: "); Serial.print(power); Serial.println("W");
-        Firebase.setString("Listrik/Appliances/daya", String(power));
+        Serial.print("Power: "); Serial.print(power); Serial.println(" Watt");
+        Firebase.setString("Listrik/Appliances/daya", String(power) + " Watt");
     } else {
         Serial.println("Error reading power");
     }
@@ -59,8 +59,8 @@ void loop() {
     float energy = pzem.energy();
     float energyJoule = energy*pow(10,3)*3600; // p=(W/t)
     if( !isnan(energy) ){
-        Serial.print("Energy: "); Serial.print(energyjoule/1000,3); Serial.println("kJoule");
-        Firebase.setString("Listrik/Appliances/energi", String(energyJoule/1000));  //dibagi 1000 untuk konversi menjadi kJoule
+        Serial.print("Energy: "); Serial.print(energyJoule/1000,3); Serial.println(" kJoule");
+        Firebase.setString("Listrik/Appliances/energi", String(energyJoule/1000) + " kJoule");  //dibagi 1000 untuk konversi menjadi kJoule
     } else {
         Serial.println("Error reading energy");
     }
@@ -68,8 +68,8 @@ void loop() {
 //In case you need it you can uncomment it
 //    float frequency = pzem.frequency();
 //    if( !isnan(frequency) ){
-//        Serial.print("Frequency: "); Serial.print(frequency, 1); Serial.println("Hz");
-//        Firebase.setFloat("Listrik/Appliances/Frequency", frequency);
+//        Serial.print("Frequency: "); Serial.print(frequency, 1); Serial.println(" Hz");
+//        Firebase.setFloat("Listrik/Appliances/Frequency", frequency + " Hz");
 //    } else {
 //        Serial.println("Error reading frequency");
 //    }
